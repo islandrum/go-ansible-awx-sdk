@@ -8,11 +8,11 @@ package main
 
 import (
     "log"
-    "github.com/Kaginari/ansible-tower-sdk/client"
+    "github.com/islandrum/go-ansible-awx-sdk/client"
 )
 
 func main() {
-    client := tower.NewAWX("http://awx.your_server_host.com", "your_awx_username", "your_awx_passwd", nil)
+    client := awx.NewAWX("http://awx.your_server_host.com", "your_awx_username", "your_awx_passwd", nil)
     // ...
 }
 ```
@@ -24,5 +24,4 @@ There are four parameters you can provide:
 * The password you wish to authenticate with
 * And an optional `*http.Client` you can use to custom how the SDK communicates with your AWX/Tower instance(s)
 
-Throughout the rest of these example documents the above `client` variable will be referred to as a correctly
-configured client to an operational AWX/Tower instance.
+Throughout the rest of these example documents the above `client` variable will be referred to as a correctly configured client to an operational AWX/Tower instance.

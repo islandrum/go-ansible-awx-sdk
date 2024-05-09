@@ -1,4 +1,4 @@
-package tower
+package awx
 // PingService implements awx ping apis.
 type PingService struct {
 	client *Client
