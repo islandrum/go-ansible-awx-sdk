@@ -1,3 +1,3 @@
-module github.com/Kaginari/ansible-tower-sdk
+module github.com/islandrum/go-ansible-awx-sdk
 
-go 1.15
+go 1.22
