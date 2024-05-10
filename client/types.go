@@ -1,4 +1,5 @@
 package awx
+
 import (
 	"time"
 )
@@ -242,7 +243,7 @@ type Credential struct {
 	ID               int                    `json:"id"`
 	Kind             string                 `json:"kind"`
 	Name             string                 `json:"name"`
-	OrganizationID   int                    `json:"organization"`
+	OrganizationID   *int                   `json:"organization"`
 	CredentialTypeID int                    `json:"credential_type_id"`
 	Inputs           map[string]interface{} `json:"inputs"`
 	SummaryFields    map[string]interface{} `json:"summary_fields"`
@@ -785,15 +786,15 @@ type WorkflowJobTemplateNode struct {
 	Identifier             string    `json:"identifier"`
 }
 type InventoryScript struct {
-    ID                     int          `json:"id"`
-    Type                   string       `json:"type"`
-    URL                    string       `json:"url"`
-    Related                *Related     `json:"related"`
-    SummaryFields          *Summary     `json:"summary_fields"`
-    Created                time.Time    `json:"created"`
-    Modified               time.Time    `json:"modified"`
-    Name                    string      `json:"name"`
-    Description             string      `json:"description"`
-    Script                  string      `json:"script"`
-    Organization            int         `json:"organization"`
+	ID            int       `json:"id"`
+	Type          string    `json:"type"`
+	URL           string    `json:"url"`
+	Related       *Related  `json:"related"`
+	SummaryFields *Summary  `json:"summary_fields"`
+	Created       time.Time `json:"created"`
+	Modified      time.Time `json:"modified"`
+	Name          string    `json:"name"`
+	Description   string    `json:"description"`
+	Script        string    `json:"script"`
+	Organization  int       `json:"organization"`
 }
