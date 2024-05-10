@@ -22,19 +22,19 @@ type AWX struct {
 	UserService                           *UserService
 	GroupService                          *GroupService
 	HostService                           *HostService
+	MeService                             *MeService
 	CredentialsService                    *CredentialsService
-    CredentialTypeService                 *CredentialTypeService
+	CredentialTypeService                 *CredentialTypeService
 	CredentialInputSourceService          *CredentialInputSourceService
 	InventorySourcesService               *InventorySourcesService
 	InventoryGroupService                 *InventoryGroupService
-    InventoryScriptsService               *InventoryScriptsService
+	InventoryScriptsService               *InventoryScriptsService
 	OrganizationsService                  *OrganizationsService
 	WorkflowJobTemplateService            *WorkflowJobTemplateService
 	WorkflowJobTemplateNodeService        *WorkflowJobTemplateNodeService
 	WorkflowJobTemplateNodeAllwaysService *WorkflowJobTemplateNodeStepService
 	WorkflowJobTemplateNodeFailureService *WorkflowJobTemplateNodeStepService
 	WorkflowJobTemplateNodeSuccessService *WorkflowJobTemplateNodeStepService
-
 }
 
 // Client implement http client.
@@ -109,10 +109,13 @@ func NewAWX(baseURL, userName, passwd string, client *http.Client) (*AWX, error)
 		HostService: &HostService{
 			client: awxClient,
 		},
+		MeService: &MeService{
+			client: awxClient,
+		},
 		CredentialsService: &CredentialsService{
 			client: awxClient,
 		},
-        CredentialTypeService: &CredentialTypeService{
+		CredentialTypeService: &CredentialTypeService{
 			client: awxClient,
 		},
 		CredentialInputSourceService: &CredentialInputSourceService{
@@ -124,9 +127,9 @@ func NewAWX(baseURL, userName, passwd string, client *http.Client) (*AWX, error)
 		InventoryGroupService: &InventoryGroupService{
 			client: awxClient,
 		},
-        InventoryScriptsService: &InventoryScriptsService{
-            client:   awxClient,
-        },
+		InventoryScriptsService: &InventoryScriptsService{
+			client: awxClient,
+		},
 		OrganizationsService: &OrganizationsService{
 			client: awxClient,
 		},
@@ -148,7 +151,6 @@ func NewAWX(baseURL, userName, passwd string, client *http.Client) (*AWX, error)
 			endpoint: fmt.Sprintf("%s%s", workflowJobTemplateNodeAPIEndpoint, "%d/allways_nodes/"),
 			client:   awxClient,
 		},
-
 	}
 
 	// test the connection and return and error if there's an issue
