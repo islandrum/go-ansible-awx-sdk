@@ -3,7 +3,7 @@
 Ansible AWX SDK for the Go programming language.
 
 
-This SDK has been developed against AWX `14.0.0`.
+This SDK has been developed against AWX `24.3.2`.
 
 ## Installing
 
