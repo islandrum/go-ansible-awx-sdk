@@ -1,4 +1,5 @@
 package awx
+
 import (
 	"encoding/json"
 	"errors"
@@ -61,7 +62,6 @@ func (r *Requester) Do(ar *APIRequest, responseStruct interface{}, options ...in
 	if err != nil {
 		return nil, err
 	}
-
 	for _, o := range options {
 		switch v := o.(type) {
 		case map[string]string:
@@ -95,13 +95,22 @@ func (r *Requester) Do(ar *APIRequest, responseStruct interface{}, options ...in
 
 	if response.StatusCode == 400 { // Bad Request
 		var errorString string
-
-		errorList := map[string][]string{}
-		json.NewDecoder(response.Body).Decode(&errorList)
+		contentType := response.Header.Get("Content-Type")
 
 		errorString = "Errors:"
-		for k, v := range errorList {
-			errorString = fmt.Sprintf("%s\n- %s: %+v", errorString, k, v)
+		if contentType == "application/json" {
+			errorList := map[string][]string{}
+			json.NewDecoder(response.Body).Decode(&errorList)
+			for k, v := range errorList {
+				errorString = fmt.Sprintf("%s\n- %s: %+v", errorString, k, v)
+			}
+		} else {
+			b, err := io.ReadAll(response.Body)
+			if err != nil {
+				errorString = fmt.Sprintf("%s\n- %s", errorString, response.Status)
+			} else {
+				errorString = fmt.Sprintf("%s\n- %s: \n%s", errorString, response.Status, string(b))
+			}
 		}
 
 		return response, errors.New(errorString)
