@@ -626,6 +626,7 @@ type User struct {
 	Related         *Related    `json:"related"`
 	SummaryFields   *Summary    `json:"summary_fields"`
 	Created         time.Time   `json:"created"`
+	Modified        time.Time   `json:"modified"`
 	Username        string      `json:"username"`
 	FirstName       string      `json:"first_name"`
 	LastName        string      `json:"last_name"`
@@ -635,6 +636,7 @@ type User struct {
 	Password        string      `json:"password"`
 	LdapDn          string      `json:"ldap_dn"`
 	ExternalAccount interface{} `json:"external_account"`
+	LastLogin       time.Time   `json:"last_login"`
 }
 
 // Group represents a group
