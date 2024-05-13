@@ -1,4 +1,5 @@
 package awx
+
 import (
 	"bytes"
 	"encoding/json"
@@ -65,6 +66,19 @@ func (cs *CredentialsService) GetCredentialsByID(id int, params map[string]strin
 	if err != nil {
 		return nil, err
 	}
+
+	ownersMap := result.SummaryFields["owners"]
+	jsonbody, err := json.Marshal(ownersMap)
+	if err != nil {
+		return nil, err
+	}
+
+	owners := []CredentialOwner{}
+	if err := json.Unmarshal(jsonbody, &owners); err != nil {
+		return nil, err
+	}
+
+	result.Owners = owners
 
 	return result, nil
 }

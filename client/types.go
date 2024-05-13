@@ -247,6 +247,7 @@ type Credential struct {
 	CredentialTypeID int                    `json:"credential_type_id"`
 	Inputs           map[string]interface{} `json:"inputs"`
 	SummaryFields    map[string]interface{} `json:"summary_fields"`
+	Owners           []CredentialOwner      `json:"-"`
 }
 
 type CredentialType struct {
@@ -265,6 +266,14 @@ type CredentialInputSource struct {
 	InputFieldName   string                 `json:"input_field_name"`
 	SummaryFields    map[string]interface{} `json:"summary_fields"`
 	Metadata         map[string]interface{} `json:"metadata"`
+}
+
+type CredentialOwner struct {
+	ID          int    `json:"id"`
+	Type        string `json:"type"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Url         string `json:"url"`
 }
 
 // UnifiedJobTemplate represents the awx api unified job template.
